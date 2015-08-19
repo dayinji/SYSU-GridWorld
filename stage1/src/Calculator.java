@@ -15,6 +15,8 @@ class Calcu {
 	private JFrame f;
 	private MyListener myLinstener = new MyListener();
 	private Font font = new Font("隶书",Font.BOLD,15);
+              private int frameWidth = 600,  frameHeight = 300;
+
 
 	public void init() {
 		f = new JFrame("13331365-Calculator!!");
@@ -46,14 +48,14 @@ class Calcu {
        		myBt.addActionListener(myLinstener);
        		f.add(myBt);
        	}
-       	f.setSize(600,300);
+       	f.setSize(frameWidth,frameHeight);
        	f.setVisible(true);
 	}
 
 	private class MyListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			JButton btn=(JButton) e.getSource();  // 取得事件源
-    		int x = 5;
+                                          // 取得事件源
+			JButton btn=(JButton) e.getSource();  
 			switch(btn.getText()) {
 				case "*":
 				case "-":
@@ -64,25 +66,33 @@ class Calcu {
 				case "OK":
 					String strA = tfList.get(0).getText();
 					String strB = tfList.get(1).getText();
-					if (strA == "" || strB == "") 
-						break;
+					if (strA.equals("") || strB.equals(""))  {
+					   break;
+                                                                      }
 					int a = Integer.parseInt(strA);
 					int b = Integer.parseInt(strB);
-					if (btList.get(0).getText() == "")
-						break;
-					if (btList.get(0).getText() == "*")
-						btList.get(2).setText(Integer.toString(a*b));
-					else if (btList.get(0).getText() == "/") {
-						double c = a;
-						btList.get(2).setText(Double.toString(c/b));
-					}
-					else if (btList.get(0).getText() == "+")
-						btList.get(2).setText(Integer.toString(a+b));
-					else if (btList.get(0).getText() == "-")
-						btList.get(2).setText(Integer.toString(a-b));
+					handleOk(a, b);
 					break;
 			}
 
 		}
   	};
+              private void handleOk(int a, int b) {
+                  if (btList.get(0).getText().equals("")) {
+                    return;
+                  }
+                  if (btList.get(0).getText().equals("*")) {
+                    btList.get(2).setText(Integer.toString(a*b));
+                  }
+                  else if (btList.get(0).getText().equals("/")) {
+                     double c = a;
+                     btList.get(2).setText(Double.toString(c/b));
+                    }
+                   else if (btList.get(0).getText().equals("+")) {
+                      btList.get(2).setText(Integer.toString(a+b));
+                   }
+                   else if (btList.get(0).getText().equals("-")) {
+                      btList.get(2).setText(Integer.toString(a-b));
+                    }
+              }
 }
