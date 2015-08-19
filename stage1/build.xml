@@ -24,6 +24,9 @@
        </jar>
        <jar destfile="${distDir}/package-src-${DSTAMP}.jar" basedir="${srcDir}"/>
     </target>
+    <target name="run" depends="dist">
+        <java classname="${buildDir}/Calculator"  fork="true"/>
+    </target>
  
     <target name="clean">
       <delete dir="${buildDir}"/>
