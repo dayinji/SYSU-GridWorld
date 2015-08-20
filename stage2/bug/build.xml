@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<project default="dist" name="Project Argon">
+     <description>A simple Java project</description>
+ 
+    <property name="circleDir" location="circleBug"/>
+    <property name="dancingDir" location="dancingBug"/>
+    <property name="spiralDir" location="SpiralBug"/>
+    <property name="zDir" location="zBug"/>
+    <property name="gridworldDir" location="../../"/>
+    <property name="buildDir" location="build"/>
+    <property name="distDir" location="dist"/>
+    <property name="user" location="13331365_zhengyuesheng"/>
+ 
+    <target name="init">
+       <tstamp/>
+       <mkdir dir="${buildDir}"/>
+       <mkdir dir="${distDir}"/>
+    </target>
+
+    <target name="compile" depends="init" >
+       <javac srcdir="${circleDir}" destdir="${buildDir}" classpath="${gridworldDir}/gridworld.jar"/>
+       <javac srcdir="${dancingDir}" destdir="${buildDir}" classpath="${gridworldDir}/gridworld.jar"/>
+       <javac srcdir="${spiralDir}" destdir="${buildDir}" classpath="${gridworldDir}/gridworld.jar"/>
+       <javac srcdir="${zDir}" destdir="${buildDir}" classpath="${gridworldDir}/gridworld.jar"/>
+    </target>
+ 
+    <target name="dist" depends="compile">
+       <jar destfile="${distDir}/package-${DSTAMP}.jar" basedir="${buildDir}">
+         <manifest>
+           <attribute name="Built-By" value="${user}"/>
+           <attribute name="Main-Class" value="Null"/>
+         </manifest>
+       </jar>
+    </target>
+ 
+    <target name="clean">
+      <delete dir="${buildDir}"/>
+      <delete dir="${distDir}"/>
+    </target>
+</project>
