@@ -53,11 +53,11 @@ public class ZBug extends Bug
         }
         else
         {
-            if (this.getDirection() == Location.RIGHT && turnNum < 2) {
+            if (steps == sideLength && this.getDirection() == Location.RIGHT && turnNum < 2) {
                 this.setDirection(225); 
                 turnNum++;
                 steps = 0;
-            } else if (this.getDirection() == 225) {
+            } else if (steps == sideLength && this.getDirection() == 225) {
                 this.setDirection(Location.RIGHT); 
                 turnNum++;
                 steps = 0;

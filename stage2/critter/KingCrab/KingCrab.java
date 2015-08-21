@@ -11,33 +11,38 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  * 
- * @author Cay Horstmann
  * @author Chris Nevison
  * @author Barbara Cloud Wells
+ * @author Cay Horstmann
  */
 
-import info.gridworld.actor.ActorWorld;
 import info.gridworld.actor.Actor;
+import info.gridworld.actor.Critter;
+import info.gridworld.grid.Grid;
 import info.gridworld.grid.Location;
-import info.gridworld.grid.UnboundedGrid;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 /**
- * This class runs a world that contains box bugs. <br />
+ * A <code>CrabCritter</code> looks at a limited set of neighbors when it eats and moves.
+ * <br />
  * This class is not tested on the AP CS A and AB exams.
  */
-public class ZBugRunner
+public class KingCrab extends CrabCritter
 {
-    public static void main(String[] args)
+    public void processActors(ArrayList<Actor> actors)
     {
-        ActorWorld world = new ActorWorld();
-        ZBug bob = new ZBug(7);
-        world.add(new Location(0, 0), bob);
-        ZBug bob1 = new ZBug(7);
-        world.add(new Location(8, 5), bob1);
-        ZBug bob2 = new ZBug(7);
-        world.add(new Location(5, 5), bob2);
-        world.show();
+        for (Actor a : actors)
+        {
+            Grid<Actor> gr = getGrid();
+            Location loc = a.getLocation();
+            Location shouldMoveLoc = loc.getAdjacentLocation(getLocation().getDirectionToward(loc));
+            if (gr.isValid(shouldMoveLoc) && gr.get(shouldMoveLoc) == null) {
+                a.moveTo(shouldMoveLoc);
+            } else {
+                a.removeSelfFromGrid();
+            }
+        }
     }
 }
