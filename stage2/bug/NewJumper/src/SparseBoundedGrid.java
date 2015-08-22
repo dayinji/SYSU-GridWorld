@@ -78,4 +78,8 @@ public class SparseBoundedGrid<E> extends AbstractGrid<E>
         }
         return locList;
     }
+
+    public Map<Location, E> getMap() {
+        return map;
+    }
 }

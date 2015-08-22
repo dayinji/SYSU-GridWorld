@@ -38,6 +38,7 @@ public class JumperRunner
         world.add(new Flower());
         world.add(new Bug());
         world.add(new Bug());
+        world.add(new Actor());
         world.show();
     }
 }
