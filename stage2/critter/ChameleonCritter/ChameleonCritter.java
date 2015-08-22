@@ -38,8 +38,9 @@ public class ChameleonCritter extends Critter
      */
     public void act()
     {
-        if (getGrid() == null)
+        if (getGrid() == null) {
             return;
+        }
         ArrayList<Location> moveLocs = getMoveLocations();
         Location loc = selectMoveLocation(moveLocs);
         if (loc != getLocation()) {
@@ -51,8 +52,9 @@ public class ChameleonCritter extends Critter
     public void processActors(ArrayList<Actor> actors)
     {
         int n = actors.size();
-        if (n == 0)
+        if (n == 0) {
             return;
+        }
         int r = (int) (Math.random() * n);
 
         Actor other = actors.get(r);

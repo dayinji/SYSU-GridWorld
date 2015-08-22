@@ -38,8 +38,9 @@ public class ChameleonKid extends Critter
      */
     public void act()
     {
-        if (getGrid() == null)
+        if (getGrid() == null) {
             return;
+        }
         ArrayList<Location> moveLocs = getMoveLocations();
         Location loc = selectMoveLocation(moveLocs);
         if (loc != getLocation()) {
