@@ -16,8 +16,7 @@
  * @author Cay Horstmann
  */
 
-import info.gridworld.actor.Actor;
-import info.gridworld.actor.Critter;
+import info.gridworld.actor.*;
 import info.gridworld.grid.Location;
 
 import java.util.ArrayList;
@@ -36,45 +35,23 @@ public class ChameleonKid extends Critter
      * Randomly selects a neighbor and changes this critter's color to be the
      * same as that neighbor's. If there are no neighbors, no action is taken.
      */
-    public void act()
-    {
-        if (getGrid() == null) {
-            return;
-        }
-        ArrayList<Location> moveLocs = getMoveLocations();
-        Location loc = selectMoveLocation(moveLocs);
-        if (loc != getLocation()) {
-            ArrayList<Actor> actors = getActors();
-            processActors(actors);
-        }
-        makeMove(loc);
-    }
+
     public void processActors(ArrayList<Actor> actors)
     {
         int n = actors.size();
         if (n == 0) {
-            trunDraker();
+            turnDraker();
             return;
         }
-        int r = (int) (Math.random() * n);
-
-        Actor other = actors.get(r);
-        setColor(other.getColor());
-    }
-
-    /**
-     * Turns towards the new location as it moves.
-     */
-    public void makeMove(Location loc)
-    {
-        setDirection(getLocation().getDirectionToward(loc));
-        if (loc == getLocation()) {
-            trunDraker();
-        } else {
-            moveTo(loc);
+        int d = getDirection();
+        Location loc = getLocation();
+        for (Actor ac : actors) {
+            if (d == loc.getDirectionToward(ac.getLocation()) || -d == loc.getDirectionToward(ac.getLocation())) {
+                setColor(ac.getColor());
+            }
         }
     }
-    private void trunDraker() {
+    private void turnDraker() {
             Color c = getColor();
             int red = (int) (c.getRed() * (1 - DARKENING_FACTOR));
             int green = (int) (c.getGreen() * (1 - DARKENING_FACTOR));

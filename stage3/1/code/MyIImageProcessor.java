@@ -1,4 +1,4 @@
-package com.badprinter.myimage;
+//package com.badprinter.myimage;
 
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -9,24 +9,28 @@ import imagereader.IImageProcessor;
 
 public class MyIImageProcessor implements IImageProcessor{
 
+	//蓝色滤镜
 	private class BlueFilter extends RGBImageFilter {
 		@Override
 		public int filterRGB(int x, int y, int rgb) {
 			return rgb & 0xff0000ff;
 		}
 	}
+	// 绿色滤镜
 	private class GreenFilter extends RGBImageFilter {
 		@Override
 		public int filterRGB(int x, int y, int rgb) {
 			return rgb & 0xff00ff00;
 		}
 	}
+	// 红色滤镜
 	private class RedFilter extends RGBImageFilter {
 		@Override
 		public int filterRGB(int x, int y, int rgb) {
 			return rgb & 0xffff0000;
 		}
-	}	
+	}
+	// 黑白滤镜	
 	private class GreyFilter extends RGBImageFilter {
 		@Override
 		public int filterRGB(int x, int y, int rgb) {
@@ -35,6 +39,7 @@ public class MyIImageProcessor implements IImageProcessor{
 			int blue = (int)(((rgb & 0x000000ff))*0.114);
 			int grey = red + green + blue;
 			//System.out.println((255<<24 + grey << 16 + grey << 8 + grey)+"");
+			// 返回
 			return (255<<24) +( grey << 16) + (grey << 8) + grey;
 		}
 	}

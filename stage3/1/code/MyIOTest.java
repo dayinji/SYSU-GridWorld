@@ -1,4 +1,4 @@
-package com.badprinter.myimage;
+//package com.badprinter.myimage;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -13,7 +13,7 @@ import javax.imageio.ImageIO;
 
 public class MyIOTest {
 	public static void main(String[] args) throws IOException {
-		Image img;// = ImageIO.read(new File("/home/badprinter/桌面/SYSU---GridWorld/stage3/bmptest/1.bmp"));
+		Image img;
 		int w = 1340;
         int h = 720;
         int pix[] = new int[w * h];

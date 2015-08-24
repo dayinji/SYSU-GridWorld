@@ -1,4 +1,4 @@
-package com.badprinter.myimage;
+//package com.badprinter.myimage;
 
 import java.awt.Graphics;
 import java.awt.Image;
