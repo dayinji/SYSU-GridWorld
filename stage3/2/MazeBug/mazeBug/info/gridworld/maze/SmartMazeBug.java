@@ -192,15 +192,32 @@ public class SmartMazeBug extends Bug {
 		};
 		String bestFangxiang = "";*/
 		Location loc = getLocation();
+                            double sum = 0;
+                            ArrayList<int> fangxiang = new ArrayList<int>();
 		for (int i = 0 ; i < canMoveLocList.size() ; i++) {
 			int index = loc.getDirectionToward(canMoveLocList.get(i))/90;
-			if (estimate[index] > best) {
+                                          sum += estimate[index];
+                                          fangxiang.add(index);
+			/*if (estimate[index] > best) {
 				best = estimate[index];
 				//bestFangxiang = fangxiang[index];
 				bestId = i;
-			}
+			}*/
 		}
+                            for (int index : fangxiang) {
+
+                            }
+                            double randNum = Math.random();
+                            double bei = estimate[0] / sum;
+                            double dong = estimate[1] / sum;
+                            double nan = estimate[2] / sum;
+                            double xi = estimate[3] / sum;
+
 		//System.out.println("最好的选择是" +bestFangxiang);
 		return canMoveLocList.get(bestId);
 	}
 }
+听说今年没有答辩,我很失望,感觉找不到方式检验我这十天来的成果,感觉我的满腹才气找不到地方可以释放.
+在此希望TA们能单独给我举办一个个人答辩秀.
+希望答辩秀的内容不要局限于这次实训的知识,我希望能涵盖Java, Python, Php, android开发,ios开发, web安全, 操作系统开发, 机器语言, 汇编语言, 数据库优化等层面,以全面考验我的优秀程度.
+我要享受那种所有人都被我的我的口才和智慧征服而自惭形秽的样子,希望全级同学或者全院同学都来旁听仰慕,同时欢迎已经毕业就业的师兄师姐回到母校来观赏前无古人后无来者的我的巅峰个人答辩秀
